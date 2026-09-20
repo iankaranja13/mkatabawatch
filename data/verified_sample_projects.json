@@ -1,0 +1,202 @@
+[
+  {
+    "ocid": "ocds-mv5oob-00005-2023-2024-W-78-S001",
+    "title": "Construction of Luiche Dam at Kigoma District in Kigoma Region",
+    "buyer": "NATIONAL IRRIGATION COMMISSION",
+    "buyer_id": "0212fff5-455a-4405-8d69-68ecd0fc1a99",
+    "award_date": "2024-06-01T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 20763431410.0
+    },
+    "contractor": "CRJE (EAST AFRICA) LIMITED",
+    "contract_status": null,
+    "contract_period": {},
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-00005-2023-2024-W-78-S001",
+    "last_updated": "2024-06-01T12:08:07Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-00005-2023-2024-W-71-S001",
+    "title": "Construction of Mgambalenga Irrigation Scheme at Kilolo District in Iringa Region",
+    "buyer": "NATIONAL IRRIGATION COMMISSION",
+    "buyer_id": "0212fff5-455a-4405-8d69-68ecd0fc1a99",
+    "award_date": "2024-06-01T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 20282721515.0
+    },
+    "contractor": "China Railway 15 Bureau Group Corporation",
+    "contract_status": null,
+    "contract_period": {},
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-00005-2023-2024-W-71-S001",
+    "last_updated": "2024-06-01T12:05:03Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-00005-2023-2024-W-128-S001",
+    "title": "Construction, Installation of Irrigation systems and Borehole Drilling for Chinangali Irrigation Scheme at Chamwino District in Dodoma Region",
+    "buyer": "NATIONAL IRRIGATION COMMISSION",
+    "buyer_id": "0212fff5-455a-4405-8d69-68ecd0fc1a99",
+    "award_date": "2024-06-01T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 16303775772.0
+    },
+    "contractor": "STC  CONSTRUCTION COMPANY LIMITED",
+    "contract_status": null,
+    "contract_period": {},
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-00005-2023-2024-W-128-S001",
+    "last_updated": "2024-06-01T12:07:32Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-88Z1-2023-2024-W-82-S001",
+    "title": " Construction of box culvert at MSUMI-BOMBAMBILI, KAVESU-LIWITI and KWA MZAVA and drift at KISUKURU in Dar es salaam City council.",
+    "buyer": "DAR ES SALAAM CITY COUNCIL",
+    "buyer_id": "0f290c4d-1bad-4d5c-aaf6-d406cd009d96",
+    "award_date": "2024-06-01T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 1522225450.0
+    },
+    "contractor": "CROSSWORLD CONSTRUCTION COMPANY LIMITED",
+    "contract_status": null,
+    "contract_period": {},
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-88Z1-2023-2024-W-82-S001",
+    "last_updated": "2024-06-01T10:11:53Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-81-2023-2024-C-01-S002",
+    "title": "Provision of Consultancy Services for Conceptual Design, Detailed Design and Preparation of Bidding Documents and Construction Supervision of Proposed Construction of Referral Hospital at Mwanza Regional Secretariat ( Ukerewe District)",
+    "buyer": "MWANZA REGIONAL SECRETARIAT",
+    "buyer_id": "74d0adb2-6f5f-4a5b-bb4a-eb382c815570",
+    "award_date": "2024-06-01T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 960745000.0
+    },
+    "contractor": "MALK CONSULTANTS LIMITED",
+    "contract_status": "pending",
+    "contract_period": {
+      "startDate": "2024-06-10T00:00:00Z",
+      "endDate": "2027-06-10T00:00:00Z",
+      "maxExtentDate": "2027-06-10T00:00:00Z",
+      "durationInDays": 1095
+    },
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-81-2023-2024-C-01-S002",
+    "last_updated": "2024-06-08T13:23:21Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-TR163-2023-2024-W-03-S003",
+    "title": "CONSTRUCTION OF KOROGWE TREATMENT PLANT",
+    "buyer": "HANDENI TRUNK MAIN WATER SUPPLY AND SANITATION AUTHORITY",
+    "buyer_id": "d085dafd-fdbb-4427-883a-6f92f3e41668",
+    "award_date": "2024-06-01T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 888169360.0
+    },
+    "contractor": "TUMAINI CIVIL WORKS LIMITED",
+    "contract_status": "pending",
+    "contract_period": {
+      "startDate": "2024-07-23T00:00:00Z",
+      "endDate": "2025-07-23T00:00:00Z",
+      "maxExtentDate": "2025-07-23T00:00:00Z",
+      "durationInDays": 365
+    },
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-TR163-2023-2024-W-03-S003",
+    "last_updated": "2024-07-20T12:27:06Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-S10-2023-2024-C-14-S001",
+    "title": "Consultancy Service for Supervision of the Construction of TARURA HQ Building to be built at Block M, Plot 11,12 and 13 in Njedengwa Investment Area, Dodoma CC",
+    "buyer": "TANZANIA RURAL AND URBAN ROADS AGENCY",
+    "buyer_id": "eaae38b7-0de0-4e4d-a4a0-e900b26f3c9a",
+    "award_date": "2024-06-01T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 560451500.0
+    },
+    "contractor": "NATIONAL HOUSING CORPORATION",
+    "contract_status": "pending",
+    "contract_period": {
+      "startDate": "2024-06-24T00:00:00Z",
+      "endDate": "2025-07-21T00:00:00Z",
+      "maxExtentDate": "2025-07-21T00:00:00Z",
+      "durationInDays": 392
+    },
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-S10-2023-2024-C-14-S001",
+    "last_updated": "2024-06-11T10:33:45Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-52-2023-2024-C-21-S001",
+    "title": "Provision of Consultancy Service fo Proposed Remodeling of CEDHA at Sanawari in Arusha Municalipality-DHR",
+    "buyer": "MINISTRY OF HEALTH",
+    "buyer_id": "9e3c0646-1d37-43e4-8367-b91e1bdc140d",
+    "award_date": "2024-05-10T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 261764000.0
+    },
+    "contractor": "DIGITAL SPACE CONSULTANCY LIMITED",
+    "contract_status": "pending",
+    "contract_period": {
+      "startDate": "2024-06-10T00:00:00Z",
+      "endDate": "2025-06-10T00:00:00Z",
+      "maxExtentDate": "2025-06-10T00:00:00Z",
+      "durationInDays": 365
+    },
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-52-2023-2024-C-21-S001",
+    "last_updated": "2024-06-01T04:32:03Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-X2-2023-2024-W-09-S001",
+    "title": "PROPOSED CONSTRUCTION OF REST HOUSE BUILDING AT NAMANGA BORDER IN LONGIDO DISTRICT, ARUSHA REGION.",
+    "buyer": "GOVERNMENT CHEMIST LABORATORY AUTHORITY",
+    "buyer_id": "beee7d16-bcf4-4b2a-b18d-d47fa0efeebe",
+    "award_date": "2024-05-31T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 174573000.0
+    },
+    "contractor": "SWASH CONSTRUCTION CO. LIMITED",
+    "contract_status": "pending",
+    "contract_period": {
+      "startDate": "2024-06-14T00:00:00Z",
+      "endDate": "2024-12-11T00:00:00Z",
+      "maxExtentDate": "2024-12-11T00:00:00Z",
+      "durationInDays": 180
+    },
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-X2-2023-2024-W-09-S001",
+    "last_updated": "2024-06-01T12:05:44Z",
+    "parties_count": 1
+  },
+  {
+    "ocid": "ocds-mv5oob-79K7-2023-2024-G-566-S001",
+    "title": "Building materials for construction of a dormitory of 80 pupils at Mtimbira Primary School",
+    "buyer": "MALINYI DISTRICT COUNCIL",
+    "buyer_id": "8004d93a-ee1b-435c-9278-56ad8bb084d2",
+    "award_date": "2024-05-26T00:00:00Z",
+    "contract_value": {
+      "currency": "TZS",
+      "amount": 82195600.0
+    },
+    "contractor": "ZIDADU GENERAL SUPPLIES",
+    "contract_status": "pending",
+    "contract_period": {
+      "startDate": "2024-05-27T00:00:00Z",
+      "endDate": "2024-06-26T00:00:00Z",
+      "maxExtentDate": "2024-06-26T00:00:00Z",
+      "durationInDays": 30
+    },
+    "source_url": "https://data.nest.go.tz/ocds/ocds-mv5oob-79K7-2023-2024-G-566-S001",
+    "last_updated": "2024-06-01T11:09:26Z",
+    "parties_count": 2
+  }
+]
