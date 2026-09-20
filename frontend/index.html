@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MkatabaWatch 🇹🇿 | Public Contracts, Public Evidence</title>
+  <meta name="description" content="Connecting official Tanzanian public procurement records with citizen evidence and AI reconciliation.">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇹🇿</text></svg>">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand" onclick="showScreen('dashboard')">
+        <span class="brand-icon">🏛️</span>
+        <div>
+          <div class="brand-title">Mkataba<span>Watch</span> 🇹🇿</div>
+          <div class="brand-tagline" data-i18n="app_subtitle">Public Contracts, Public Evidence</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button id="nav-dashboard" class="nav-btn active" onclick="showScreen('dashboard')" data-i18n="nav_dashboard">Projects Dashboard</button>
+        <button id="nav-submit-evidence" class="nav-btn" onclick="showScreen('submit-evidence')" data-i18n="nav_submit">Submit Evidence</button>
+        <button id="nav-verification-queue" class="nav-btn" onclick="showScreen('verification-queue'); loadVerificationQueue();" data-i18n="nav_queue">Verification Queue</button>
+
+        <div class="lang-switch" title="Language / Lugha">
+          <button id="lang-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+          <button id="lang-sw" class="lang-btn" onclick="setLanguage('sw')">SW</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main App Body -->
+  <main>
+
+    <!-- Source Attribution Banner -->
+    <div class="source-banner">
+      <div>
+        <span>🛡️ <strong>Official Open Data Source:</strong> Tanzania Public Procurement Regulatory Authority (PPRA) NeST Portal (OCDS v1.1)</span>
+      </div>
+      <div>
+        <a href="https://data.nest.go.tz" target="_blank" rel="noopener noreferrer" data-i18n="official_source_badge">Visit NeST Portal ↗</a>
+      </div>
+    </div>
+
+    <!-- Stat Counter Bar -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon stat-blue">📋</div>
+        <div class="stat-meta">
+          <h4 data-i18n="stat_contracts">Contracts Monitored</h4>
+          <div class="stat-val" id="stat-contracts-val">0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-green">💰</div>
+        <div class="stat-meta">
+          <h4 data-i18n="stat_total_value">Total Monitored Value</h4>
+          <div class="stat-val" id="stat-total-val">TZS 0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-amber">⚠️</div>
+        <div class="stat-meta">
+          <h4 data-i18n="stat_discrepancies">Flagged Discrepancies</h4>
+          <div class="stat-val" id="stat-discrepancies-val">0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon stat-purple">👥</div>
+        <div class="stat-meta">
+          <h4 data-i18n="stat_evidence">Community Reports</h4>
+          <div class="stat-val" id="stat-evidence-val">0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 1: PROJECTS DASHBOARD -->
+    <section id="screen-dashboard" class="app-screen">
+      <div class="controls-bar">
+        <input type="text" id="search-input" class="search-input" data-i18n-placeholder="search_placeholder" placeholder="Search by project title, contractor, buyer, or OCID...">
+        
+        <select id="region-filter" class="filter-select">
+          <option value="all" data-i18n="filter_all_regions">All Regions</option>
+          <option value="Dar es Salaam">Dar es Salaam</option>
+          <option value="Dodoma">Dodoma</option>
+          <option value="Arusha">Arusha</option>
+          <option value="Mwanza">Mwanza</option>
+          <option value="Kigoma">Kigoma</option>
+          <option value="Iringa">Iringa</option>
+          <option value="Tanga">Tanga</option>
+          <option value="Morogoro">Morogoro</option>
+        </select>
+
+        <select id="sector-filter" class="filter-select">
+          <option value="all" data-i18n="filter_all_sectors">All Sectors</option>
+          <option value="water">Water & Irrigation</option>
+          <option value="transport">Transport & Roads</option>
+          <option value="health">Healthcare</option>
+          <option value="education">Education</option>
+          <option value="administration">Public Administration</option>
+        </select>
+
+        <select id="status-filter" class="filter-select">
+          <option value="" data-i18n="filter_all_statuses">All Evidence Statuses</option>
+          <option value="discrepancy_flagged" data-i18n="status_discrepancy">Discrepancy Flagged</option>
+          <option value="consistent" data-i18n="status_consistent">Consistent</option>
+          <option value="no_evidence" data-i18n="status_no_evidence">No Community Evidence</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th data-i18n="col_project">Project Title & Sector</th>
+              <th data-i18n="col_entity">Procuring Entity</th>
+              <th data-i18n="col_contractor">Contractor</th>
+              <th data-i18n="col_value">Contract Value</th>
+              <th data-i18n="col_region">Region</th>
+              <th data-i18n="col_status">Evidence Status</th>
+              <th data-i18n="col_actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="projects-tbody">
+            <!-- Populated via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: PROJECT PROFILE -->
+    <section id="screen-project-detail" class="app-screen" style="display:none;">
+      <div style="margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <button class="btn btn-secondary" onclick="showScreen('dashboard')" data-i18n="back_to_dashboard">← Back to Projects</button>
+        <div style="display:flex; gap:8px;">
+          <a id="detail-nest-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="view_on_nest">View Original NeST Record ↗</a>
+          <button class="btn btn-primary" onclick="openSubmitForProject(selectedProjectId)" data-i18n="nav_submit">+ Submit Evidence</button>
+          <button class="btn btn-success" onclick="reconcileProject(selectedProjectId)">🤖 <span data-i18n="reconcile_btn">Run AI Reconciliation</span></button>
+        </div>
+      </div>
+
+      <!-- Project Heading Card -->
+      <div class="compare-card" style="margin-bottom:20px; border-left:6px solid var(--primary);">
+        <h2 id="detail-title" style="font-size:1.4rem; font-weight:800; margin-bottom:6px;">Project Title</h2>
+        <div id="detail-ocid" style="font-family:monospace; color:var(--text-muted); font-size:0.85rem; margin-bottom:12px;">OCID</div>
+        <p style="font-size:0.8rem; color:var(--text-muted);">
+          <span data-i18n="source_attribution">Official Source: NeST/PPRA Open Contracting Data Portal</span> | Last Updated: <strong id="detail-last-updated">N/A</strong>
+        </p>
+      </div>
+
+      <!-- Official Details Grid -->
+      <div class="compare-card official" style="margin-bottom:24px;">
+        <h3 class="card-heading" data-i18n="contract_info">Official Contract Breakdown</h3>
+        <div class="reconciliation-grid" style="margin-bottom:0;">
+          <div class="key-value-list">
+            <div class="kv-item"><span class="kv-label" data-i18n="col_entity">Procuring Entity:</span><span class="kv-val" id="detail-buyer">-</span></div>
+            <div class="kv-item"><span class="kv-label" data-i18n="col_contractor">Contractor:</span><span class="kv-val" id="detail-contractor">-</span></div>
+            <div class="kv-item"><span class="kv-label" data-i18n="col_value">Contract Value:</span><span class="kv-val" id="detail-value" style="color:#0284c7; font-size:1.1rem;">-</span></div>
+          </div>
+          <div class="key-value-list">
+            <div class="kv-item"><span class="kv-label" data-i18n="col_region">Location:</span><span class="kv-val" id="detail-location">-</span></div>
+            <div class="kv-item"><span class="kv-label">Contract Period:</span><span class="kv-val" id="detail-period">-</span></div>
+            <div class="kv-item"><span class="kv-label">Official Status:</span><span class="kv-val" id="detail-status">-</span></div>
+            <div class="kv-item"><span class="kv-label">Official Progress (%):</span><span class="kv-val" id="detail-progress" style="color:var(--text-muted);">-</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Latest AI Reconciliation (if present) -->
+      <div id="detail-latest-reconciliation" class="ai-output-box" style="display:none; margin-bottom:24px;">
+        <div id="ai-output-container"></div>
+      </div>
+
+      <!-- Community Evidence List -->
+      <div class="compare-card evidence">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h3 class="card-heading" style="margin-bottom:0;" data-i18n="community_evidence">Community Evidence Submissions</h3>
+          <button class="btn btn-secondary btn-sm" onclick="openSubmitForProject(selectedProjectId)" data-i18n="submit_first_evidence">+ Submit Report</button>
+        </div>
+        <div id="detail-evidence-list">
+          <!-- Populated via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: EVIDENCE SUBMISSION FORM -->
+    <section id="screen-submit-evidence" class="app-screen" style="display:none;">
+      <div class="compare-card" style="max-width:800px; margin:0 auto;">
+        <h2 style="font-size:1.35rem; font-weight:800; margin-bottom:6px;" data-i18n="evidence_form_title">Submit Community Evidence</h2>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;" data-i18n="evidence_form_desc">
+          Help monitor public projects in your area. Submit observations, photos, and location details for independent verification.
+        </p>
+
+        <form id="evidence-form">
+          <div class="form-group">
+            <label class="form-label" data-i18n="select_project_label">Select Contract to Monitor *</label>
+            <select id="evidence-project-select" class="form-control" required>
+              <!-- Populated via JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="obs_type_label">Observation Type *</label>
+            <div class="radio-group">
+              <label class="radio-card"><input type="radio" name="observation_type" value="delayed" checked> <span data-i18n="obs_delayed">Delayed / Stalled</span></label>
+              <label class="radio-card"><input type="radio" name="observation_type" value="incomplete"> <span data-i18n="obs_incomplete">Incomplete / Missing</span></label>
+              <label class="radio-card"><input type="radio" name="observation_type" value="poor_quality"> <span data-i18n="obs_poor_quality">Poor Quality / Defective</span></label>
+              <label class="radio-card"><input type="radio" name="observation_type" value="not_started"> <span data-i18n="obs_not_started">Work Has Not Started</span></label>
+              <label class="radio-card"><input type="radio" name="observation_type" value="appears_completed"> <span data-i18n="obs_appears_completed">Appears Completed</span></label>
+              <label class="radio-card"><input type="radio" name="observation_type" value="cannot_be_found"> <span data-i18n="obs_cannot_be_found">Site Cannot Be Found</span></label>
+              <label class="radio-card"><input type="radio" name="observation_type" value="other"> <span data-i18n="obs_other">Other Observation</span></label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="description_label">Field Description & Observations *</label>
+            <textarea id="evidence-description" class="form-control" rows="4" required data-i18n-placeholder="description_placeholder" placeholder="Describe the current condition of the project, visible materials, active workers or machinery, and any community impact..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="photo_label">Upload Photo Evidence (Optional)</label>
+            <input type="file" id="evidence-photo" class="form-control" accept="image/*">
+            <small style="color:var(--text-muted); display:block; margin-top:4px;" data-i18n="drag_drop_photo">Click to upload photo evidence (JPEG/PNG, max 5MB)</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="gps_label">GPS Coordinates</label>
+            <div style="display:flex; gap:8px;">
+              <input type="text" id="evidence-gps" class="form-control" placeholder="-6.1630, 35.7516">
+              <button type="button" class="btn btn-secondary" onclick="captureCurrentLocation()" data-i18n="get_current_location">📍 Capture GPS</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="submitter_label">Your Name or Organization (Optional)</label>
+            <input type="text" id="evidence-submitter" class="form-control" data-i18n-placeholder="submitter_placeholder" placeholder="e.g., Ward Monitor, Anonymous Citizen">
+          </div>
+
+          <div style="margin-top:24px; display:flex; gap:12px;">
+            <button type="submit" id="submit-evidence-btn" class="btn btn-primary" style="flex:1; padding:12px;" data-i18n="submit_evidence_btn">Submit Field Report</button>
+            <button type="button" class="btn btn-secondary" onclick="showScreen('dashboard')" data-i18n="back_to_dashboard">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: AI RECONCILIATION VIEW -->
+    <section id="screen-reconciliation" class="app-screen" style="display:none;">
+      <div style="margin-bottom:16px;">
+        <button class="btn btn-secondary" onclick="viewProject(selectedProjectId)" data-i18n="back_to_dashboard">← Back to Project</button>
+      </div>
+
+      <!-- Loading State -->
+      <div id="recon-loading-state" style="display:none; text-align:center; padding:60px 20px;">
+        <div style="font-size:40px; margin-bottom:16px;">🤖 🔍</div>
+        <h3 style="font-size:1.2rem; font-weight:700;" data-i18n="reconciling">Running AI Reconciliation Analysis...</h3>
+        <p style="color:var(--text-muted); font-size:0.85rem;">Comparing official procurement milestones with community field reports using strict non-accusatory transparency rules...</p>
+      </div>
+
+      <!-- Content Box -->
+      <div id="recon-content-box">
+        <h2 style="font-size:1.35rem; font-weight:800; margin-bottom:16px;" data-i18n="side_by_side_title">Official Record vs. Community Evidence</h2>
+
+        <!-- Side by Side Layout -->
+        <div class="reconciliation-grid">
+          <!-- Left: Official Record -->
+          <div class="compare-card official">
+            <h3 class="card-heading">
+              <span data-i18n="official_claim_heading">Official Contract Terms</span>
+              <span class="badge badge-official" data-i18n="badge_official">Official Record</span>
+            </h3>
+            <div class="key-value-list">
+              <div class="kv-item"><span class="kv-label">Project:</span><span class="kv-val" id="recon-official-title">-</span></div>
+              <div class="kv-item"><span class="kv-label">Buyer:</span><span class="kv-val" id="recon-official-buyer">-</span></div>
+              <div class="kv-item"><span class="kv-label">Contractor:</span><span class="kv-val" id="recon-official-contractor">-</span></div>
+              <div class="kv-item"><span class="kv-label">Contract Value:</span><span class="kv-val" id="recon-official-value">-</span></div>
+              <div class="kv-item"><span class="kv-label">Expected Schedule:</span><span class="kv-val" id="recon-official-period">-</span></div>
+              <div class="kv-item"><span class="kv-label">Stated Status:</span><span class="kv-val" id="recon-official-status">-</span></div>
+            </div>
+          </div>
+
+          <!-- Right: Community Evidence -->
+          <div class="compare-card evidence">
+            <h3 class="card-heading">
+              <span data-i18n="observed_evidence_heading">Observed Community Evidence</span>
+              <span class="badge badge-community" data-i18n="badge_community">Community Evidence</span>
+            </h3>
+            <div id="recon-evidence-summary-list">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Reconciliation Output Box -->
+        <div id="ai-output-box" class="ai-output-box">
+          <div id="ai-output-container">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: VERIFICATION QUEUE -->
+    <section id="screen-verification-queue" class="app-screen" style="display:none;">
+      <div class="compare-card" style="margin-bottom:20px;">
+        <h2 style="font-size:1.35rem; font-weight:800; margin-bottom:6px;" data-i18n="queue_title">Human Verification Queue</h2>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px;" data-i18n="queue_desc">
+          Review projects flagged with potential discrepancies between official commitments and citizen observations.
+        </p>
+
+        <div style="display:flex; gap:12px; max-width:300px;">
+          <select id="queue-review-filter" class="filter-select">
+            <option value="all" data-i18n="queue_filter_all">All Discrepancies</option>
+            <option value="pending" data-i18n="queue_filter_pending">Pending Human Review</option>
+            <option value="verified" data-i18n="queue_filter_verified">Verified by Human</option>
+            <option value="resolved" data-i18n="queue_filter_resolved">Resolved / Explained</option>
+            <option value="dismissed" data-i18n="queue_filter_dismissed">Dismissed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th data-i18n="col_project">Project</th>
+              <th data-i18n="col_entity">Procuring Entity</th>
+              <th data-i18n="col_value">Value</th>
+              <th data-i18n="confidence_label">Confidence</th>
+              <th>Review Status</th>
+              <th data-i18n="col_actions">Human Review Actions</th>
+            </tr>
+          </thead>
+          <tbody id="queue-tbody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div>
+        <strong>MkatabaWatch 🇹🇿</strong> — Transparency & Accountability Track | Hackathon Proof of Concept
+      </div>
+      <div>
+        Official Data: <a href="https://data.nest.go.tz" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Tanzania PPRA NeST Portal</a> | 
+        <a href="https://github.com/iankaranja13/mkatabawatch" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">GitHub Repository ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/translations.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
