@@ -27,8 +27,15 @@ if [ ! -f "mkatabawatch.db" ]; then
     python -m backend.app.seed_evidence
 fi
 
+DEFAULT_PORT=8000
+if lsof -Pi :8000 -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo "ℹ️  Port 8000 is currently in use by another process. Automatically using port 8001."
+    DEFAULT_PORT=8001
+fi
+PORT="${PORT:-$DEFAULT_PORT}"
+
 echo ""
-echo "🚀 Starting MkatabaWatch at http://localhost:8000"
-echo "📖 API documentation available at http://localhost:8000/docs"
+echo "🚀 Starting MkatabaWatch at http://localhost:${PORT}"
+echo "📖 API documentation available at http://localhost:${PORT}/docs"
 echo "=========================================================="
-exec uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
+exec uvicorn backend.app.main:app --host 0.0.0.0 --port "${PORT}"
